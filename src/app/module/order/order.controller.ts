@@ -3,27 +3,31 @@ import Order from '../order/order.model';
 import Product from '../product/product.model';
 
 
-export const createOrder = async (req: Request, res: Response, next: NextFunction) => {
+export const createOrder = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { email, product: productId, quantity } = req.body;
 
-    // Fetch product from the database
+    // Find product from the database
     const product = await Product.findById(productId);
 
     if (!product) {
-      return res.status(404).json({
+      res.status(400).json({
         message: 'Product not found',
         success: false,
+        error: "NotFoundError",
       });
+      return; //stop execution
     }
 
     if (product.quantity < quantity) {
-      return res.status(400).json({
+      res.status(400).json({
         message: 'Insufficient stock',
         success: false,
-        error: { availableQuantity: product.quantity },
+        error: 'Not enough stock available',
       });
+      return; // stop execution
     }
+
 
     // Update product 
     product.quantity -= quantity;
@@ -48,7 +52,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
 };
 
 /* Calculate total revenue */
-export const calculateRevenue = async (_: Request, res: Response, next: NextFunction) => {
+export const calculateRevenue = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const revenue = await Order.aggregate([
       { $group: { _id: null, totalRevenue: { $sum: '$totalPrice' } } },

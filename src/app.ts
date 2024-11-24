@@ -18,7 +18,7 @@ app.use(errorHandler);
 app.get('/', (req: Request, res: Response) => {
   res.send({
     status: true,
-    message: 'Server Live .. ⚡',
+    message: 'Server Live .. ',
   })
 })
 

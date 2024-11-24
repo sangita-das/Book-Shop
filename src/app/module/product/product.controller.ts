@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import Product from '../product/product.model';
 
+
+// create book/product
 export const createProduct = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const product = new Product(req.body);
@@ -16,6 +18,8 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
   }
 };
 
+
+// get all products
 export const getAllProducts = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const searchTerm = req.query.searchTerm as string;
@@ -33,6 +37,8 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
   }
 };
 
+
+// get single book by id
 export const getProductById = async (req: Request<{ productId: string }>, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { productId } = req.params;
@@ -58,6 +64,8 @@ export const getProductById = async (req: Request<{ productId: string }>, res: R
   }
 };
 
+
+// Update a book
 export const updateProduct = async (req: Request<{ productId: string }>, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { productId } = req.params;
@@ -83,6 +91,8 @@ export const updateProduct = async (req: Request<{ productId: string }>, res: Re
   }
 };
 
+
+// delete a book
 export const deleteProduct = async (req: Request<{ productId: string }>, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { productId } = req.params;
