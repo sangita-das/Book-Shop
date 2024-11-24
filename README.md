@@ -22,13 +22,13 @@ This **Book Store API** is developed using **Express.js**, and **TypeScript**, w
 
 ##ApiDog Endpoints
 **Product**
-POST /api/products - Add a book
-GET /api/products - List books or filter
-GET /api/products/:id - View a book
-PUT /api/products/:id - Update a book
-DELETE /api/products/:id - Delete a book
+- POST /api/products - Add a book
+- GET /api/products - List books or filter
+- GET /api/products/:id - View a book
+- PUT /api/products/:id - Update a book
+- DELETE /api/products/:id - Delete a book
 **Orders**
-POST /api/orders - Place an order
-GET /api/orders/revenue - Get total revenue
+- POST /api/orders - Place an order
+- GET /api/orders/revenue - Get total revenue
 
 
